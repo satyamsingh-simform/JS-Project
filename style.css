@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+h1{
+    font-size: 3rem;
+    text-decoration: underline;
+}
+
+
+img{
+    height: 100px;
+    width: auto;
+}
+
+table tr td{
+    padding: 8px;
+}

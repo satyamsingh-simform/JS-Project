@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+div{
+    padding: 5rem;
+    border: 1px ;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: rgb(107, 194, 194);
+}
+h1{
+    text-align: center;
+    color: black;
+}
+h3{
+    display: flex;
+    justify-content: end;
+    color: salmon;
+}
+p{
+    background-color: white;
+    padding: 3rem;
+    border: 1px solid salmon;
+    border-radius: 1rem;
+}
