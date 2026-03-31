@@ -26,7 +26,7 @@ function createBubble(e){
 let timePrev=0;
 document.addEventListener('mouseover',(e)=>{
     let timeNow=Date.now();
-    if(timeNow-timePrev<10){
+    if(timeNow-timePrev<100){
         return;
     }
     timePrev=timeNow;
