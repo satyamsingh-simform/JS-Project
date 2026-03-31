@@ -1,57 +1,57 @@
-const arr=[
-  "The only true wisdom is in knowing you know nothing. — Socrates",
-  "Do what you can, with what you have, where you are. — Theodore Roosevelt",
-  "We suffer more in imagination than in reality. — Seneca",
-  "In the middle of difficulty lies opportunity. — Albert Einstein",
-  "The mind is everything. What you think, you become. — Buddha",
-  "Success is not final, failure is not fatal: it is the courage to continue that counts. — Winston Churchill",
-  "Opportunities don’t happen. You create them. — Chris Grosser",
-  "Do what you love and you’ll never work a day in your life. — Confucius",
-  "Don’t count the days, make the days count. — Muhammad Ali",
-  "Your time is limited, so don’t waste it living someone else’s life. — Steve Jobs",
-  "The greatest thing you’ll ever learn is just to love and be loved in return. — Nat King Cole",
-  "Love all, trust a few, do wrong to none. — William Shakespeare",
-  "We accept the love we think we deserve. — Stephen Chbosky",
-  "To love oneself is the beginning of a lifelong romance. — Oscar Wilde",
-  "Sometimes the heart sees what is invisible to the eye. — H. Jackson Brown Jr.",
-  "Happiness depends upon ourselves. — Aristotle",
-  "Life isn’t about finding yourself. Life is about creating yourself. — George Bernard Shaw",
-  "Do what makes your soul shine. — Unknown",
-  "Act as if what you do makes a difference. It does. — William James",
-  "Not how long, but how well you have lived is the main thing. — Seneca"
-];
-
-let colors = [
-  "#FFB6C1", // LightPink
-  "#FFD700", // LightGold
-  "#ADD8E6", // LightBlue
-  "#90EE90", // LightGreen
-  "#FFDEAD", // NavajoWhite
-  "#FAFAD2", // LightGoldenRodYellow
-  "#FFEFD5", // PapayaWhip
-  "#D3D3D3", // LightGray
-  "#E6E6FA", // Lavender
-  "#F0E68C", // Khaki
-  "#FFFACD", // LemonChiffon
-  "#F5F5DC", // Beige
-  "#F0FFFF", // Azure
-  "#FFF0F5", // LavenderBlush
-  "#F5FFFA", // MintCream
-  "#D3D3D3", // LightGray
-  "#E6E6FA", // Lavender
-  "#F0E68C", // Khaki
-  "#FFFACD", // LemonChiffon
-  "#F5F5DC", // Beige
-];
-
-document.addEventListener('keydown',(event)=>{
-  if(event.key==='Enter'){
-    let p=document.querySelector('p');
-    let index=Math.floor(Math.random()*arr.length);
-    p.innerHTML=arr[index];
-    let div=document.querySelector('div');
-    div.style.backgroundColor=colors[index];
-  }
-},)
+let quote=[];
+let index=0;
+async function fetchQuotes(){
+    let response=await fetch('http://api.quotable.io/quotes?limit=20');
+    quote=await response.json();
+    quote=quote.results;
+    console.log(quote);
+}
+fetchQuotes();
 
 
+let nextBtn = document.getElementById('nextBtn')
+let prevBtn = document.getElementById('prevBtn')
+let copyBtn = document.getElementById('copyBtn')
+let p=document.getElementById('quote');
+let span=document.getElementById('quote-by');
+let divContent=document.getElementById('content');
+
+
+function changeQuote(index){
+    p.innerText=quote[index].content;
+    span.innerText=quote[index].author;
+}
+prevBtn.disabled=true;
+function updateButton(index){
+    prevBtn.disabled=(index===0);
+    nextBtn.disabled=(index===quote.length-1);
+}
+function copy(){
+    let text=p.innerText;
+    console.log(text);
+    navigator.clipboard.writeText(text)
+    .then(()=>{
+        copyBtn.innerHTML=`copied`;
+        setTimeout(()=>{
+            copyBtn.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy-icon lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
+        },1500)
+    })
+    .catch((err)=>console.log(err))
+}
+
+
+nextBtn.addEventListener('click',()=>{
+    index++;
+    changeQuote(index);
+    updateButton(index);
+})
+
+prevBtn.addEventListener('click',()=>{
+    index--;
+    changeQuote(index);
+    updateButton(index);
+})
+
+copyBtn.addEventListener('click',()=>{
+    copy();
+})

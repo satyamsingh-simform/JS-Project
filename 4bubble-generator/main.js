@@ -1,4 +1,4 @@
-document.addEventListener('mouseover', (e)=>{
+function createBubble(e){
     let div=document.createElement('div');
     div.className='circle';
     div.id='wow';
@@ -21,4 +21,14 @@ document.addEventListener('mouseover', (e)=>{
     setTimeout(()=>{
         div.remove();
     },5000)
+}
+
+let timePrev=0;
+document.addEventListener('mouseover',(e)=>{
+    let timeNow=Date.now();
+    if(timeNow-timePrev<10){
+        return;
+    }
+    timePrev=timeNow;
+    createBubble(e);
 })

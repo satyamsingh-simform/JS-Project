@@ -10,27 +10,46 @@ body{
     align-items: center;
     background-color: black;
 }
-div{
-    padding: 5rem;
-    border: 1px ;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    background-color: rgb(107, 194, 194);
-}
 h1{
     text-align: center;
     color: black;
 }
-h3{
-    display: flex;
-    justify-content: end;
-    color: salmon;
-}
-p{
-    background-color: white;
-    padding: 3rem;
-    border: 1px solid salmon;
+
+.root{
+    padding: 5rem;
+    border: 1px ;
     border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: rgb(107, 194, 194);
 }
+.content{
+    width: 50rem;
+    height: 10rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    border: 1px solid salmon;
+}
+#quote-by{
+    text-align: end;
+}
+
+.btn{
+    height: 3rem;
+    width: 25rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+button{
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
