@@ -1,13 +1,17 @@
-let quote=[];
+let quotes=[];
 let index=0;
 async function fetchQuotes(){
-    let response=await fetch('http://api.quotable.io/quotes?limit=20');
-    quote=await response.json();
-    quote=quote.results;
-    console.log(quote);
+    try{
+        let response = await fetch('https://dummyjson.com/quotes');
+        let data = await response.json();
+        console.log(data.quotes[0]);
+        quotes=data.quotes;
+    }
+    catch(err){
+        console.log(err);
+    }
 }
 fetchQuotes();
-
 
 let nextBtn = document.getElementById('nextBtn')
 let prevBtn = document.getElementById('prevBtn')
@@ -15,16 +19,17 @@ let copyBtn = document.getElementById('copyBtn')
 let p=document.getElementById('quote');
 let span=document.getElementById('quote-by');
 let divContent=document.getElementById('content');
+let divCopy=document.getElementById('div-content');
 
 
 function changeQuote(index){
-    p.innerText=quote[index].content;
-    span.innerText=quote[index].author;
+    p.innerText=quotes[index].quote;
+    span.innerText=quotes[index].author;
 }
 prevBtn.disabled=true;
 function updateButton(index){
     prevBtn.disabled=(index===0);
-    nextBtn.disabled=(index===quote.length-1);
+    nextBtn.disabled=(index===quotes.length-1);
 }
 function copy(){
     let text=p.innerText;
@@ -47,13 +52,18 @@ nextBtn.addEventListener('click',()=>{
     changeQuote(index);
     updateButton(index);
 })
-
 prevBtn.addEventListener('click',()=>{
     index--;
     changeQuote(index);
     updateButton(index);
 })
-
 copyBtn.addEventListener('click',()=>{
     copy();
+})
+divCopy.addEventListener('dblclick',()=>{
+    let copyText=divCopy.innerText;
+    navigator.clipboard.writeText(copyText)
+    .then(()=>{
+        alert('copied successfully');
+    })
 })
