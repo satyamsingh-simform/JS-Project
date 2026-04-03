@@ -1,4 +1,3 @@
-
 let error=document.getElementById('error');
 let loader=document.getElementById('loading');
 let searchInput=document.getElementById('country-input');
@@ -54,7 +53,7 @@ async function fetchCountry(name){
 
         countryDetails.innerHTML = `
             <div class="card">
-                <div class="top">
+                <div class="flag-top">
                     <img class="flag" src="${country.flags.svg}" alt="flag"/>
                     <div>
                         <h2>${country.name.common}</h2>
@@ -71,7 +70,7 @@ async function fetchCountry(name){
                     <p><strong>Timezones:</strong> ${timezones}</p>
                 </div>
 
-                <div class="extra">
+                <div class="extra-info">
                     <img class="coat" src="${country.coatOfArms.svg}" alt="coat"/>
                     <a href="${country.maps.googleMaps}" target="_blank">View on Google Maps</a>
                 </div>
@@ -81,19 +80,28 @@ async function fetchCountry(name){
 
     }
     catch(err){
-        error.classList.remove('error');
-        error.innerText=err.message || `failed to load data`;
+        console.log(error.innerText=err.message || `failed to load data`);
+        // error.classList.remove('error');
+        // // countryDetails.innerHTML ='';
+        // error.innerText=err.message || `failed to load data`;
     }
     finally{
         loader.classList.add('loading');
     }
 }
 
-// fetchCountry('India');
+fetchCountry('India');
 
-
+let countryName;
+function sameSearchTwice(){
+    if(countryName==searchInput.value.trim()){
+        console.log('same country name');
+        throw new Error('same country');
+    }
+}
 searchBtn.addEventListener('click',()=>{
-    let countryName=searchInput.value.trim();
+    sameSearchTwice();
+    countryName=searchInput.value.trim();
     if(!countryName) return ;
     fetchCountry(countryName);
 })
@@ -113,6 +121,7 @@ function addFavourite(country){
     console.log('fav-after-check',fav);
     
     localStorage.setItem('favorites',JSON.stringify(fav));
+    loadFavorites();
     console.log('fav-data-after set',JSON.parse(localStorage.getItem('favorites')));
 }
 
@@ -137,9 +146,16 @@ function loadFavorites(){
     let favCountryArr=[...favCountry];
     console.log(favCountryArr);
     
+    let sameData;
     favCountryArr.forEach((data,index)=>{
         data.addEventListener('click',()=>{
             console.log(data.innerText);
+            if(sameData===data.innerText){
+                console.log('same country');
+                
+                return;
+            }
+            sameData=data.innerText;
             fetchCountry(data.innerText);
         })
     })
@@ -156,5 +172,4 @@ window.addEventListener('DOMContentLoaded',loadFavorites)
 
 
 
-// console.log([...favCountry]);
 
