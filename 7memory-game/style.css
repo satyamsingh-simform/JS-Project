@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(136, 161, 153);
+}
+
+.container{
+    height: 70%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-left: 250px;
+}
+.card{
+    width: 100%;
+    flex: 80;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 3px;
+}
+
+.item {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(106, 172, 150);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: transparent;
+  cursor: pointer;
+}
+
+.item.flipped {
+  color: black;
+  background: white;
+}
+
+.item.matched {
+  background: rgb(160, 228, 160);
+  pointer-events: none;
+}
+
+#reset{
+  padding: 10px 30px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  color: rgb(230, 228, 225);
+  background-color: rgb(59, 96, 99);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.details{
+  margin-left: 50px;
+  height: 58%;
+  background-color: rgb(106, 172, 150);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+h3,h1{
+  color: rgb(230, 228, 225);
+}
+h4,.time,.msg{
+  color: rgb(214, 68, 68);
+}
+.disabled{
+  pointer-events: none;
+}
+.try-again{
+  padding-top: 15px;
+  text-align: center;
+  color: aqua;
+  font-size: 1.5rem;
+}
+.won{
+  font-size: 2rem;
+  text-align: center;
+  color: yellow;
+}
