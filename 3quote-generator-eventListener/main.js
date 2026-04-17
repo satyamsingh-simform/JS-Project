@@ -62,7 +62,7 @@ let seeFavBtn=document.getElementById('see-fav')
 
 function addFavQuote(){
     let quote_id=quoteArr[index].id;
-    let favs=JSON.parse(localStorage.getItem('favorites'))||[];
+    let favs=JSON.parse(localStorage.getItem('favoritesQuote'))||[];
     console.log(favs);
     if(favs.some((fav)=>fav.id===quote_id)){
         alert('already present in fav')
@@ -70,7 +70,7 @@ function addFavQuote(){
     } 
     favs.push(quoteArr[index]);
     console.log(favs);
-    localStorage.setItem('favorites',JSON.stringify(favs));
+    localStorage.setItem('favoritesQuote',JSON.stringify(favs));
     alert('added to favourite')
 }
 

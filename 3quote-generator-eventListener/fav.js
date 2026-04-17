@@ -3,7 +3,7 @@ let favData=[];
 let originalData=[];
 
 window.onload=function(){
-    favData=JSON.parse(localStorage.getItem('favorites')) || [];
+    favData=JSON.parse(localStorage.getItem('favoritesQuote')) || [];
     originalData=[...favData];
     render(favData);
 
@@ -35,7 +35,7 @@ function render(data){
     Array.from(delBtn).forEach((button)=>{
         button.addEventListener('click',(e)=>{
             favData = favData.filter((q)=>q.id != e.target.id);
-            localStorage.setItem('favorites', JSON.stringify(favData));
+            localStorage.setItem('favoritesQuote', JSON.stringify(favData));
 
             originalData = [...favData];
             render(favData);
