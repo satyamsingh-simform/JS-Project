@@ -36,6 +36,14 @@ h1{
     background-color: white;
     border: 1px solid salmon;
 }
+.fav-btn{
+    border: none;
+    background-color: white;
+    text-align: end;
+}
+.fav-btn>svg:hover{
+    cursor: pointer;
+}
 #quote-by{
     text-align: end;
 }
@@ -47,7 +55,7 @@ h1{
     justify-content: center;
     gap: 1rem;
 }
-button{
+#nextBtn,#prevBtn,#copyBtn,#see-fav,.fav-btn{
     padding: 0.6rem 2rem;
     font-size: 1rem;
     cursor: pointer;
